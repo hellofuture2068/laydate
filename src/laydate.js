@@ -2158,6 +2158,14 @@
           childUL.push('<li'+ (that[startEnd][hms[i]] === ii ? ' class="'+ THIS +'"' : '') +'>'+ lay.digit(ii, 2) +'</li>');
         });
         li.innerHTML = childUL.join('') + '</ol>';
+        if(options.notShowSecond){
+          //样式设置
+          li.style.width='50%';
+          if(i==2){
+            li.style.display='none';
+          }
+          lay(li).find('li').css('padding-left','54');
+        }
         ul.appendChild(li);
       });
       setTimeStatus();
@@ -2246,6 +2254,7 @@
       elemHeader[2].appendChild(span);
 
       lay(ul).find('ol').each(function(i){
+        var minuteAutoClose = options.minuteAutoClose && i == 1;
         var ol = this;
         //选择时分秒
         lay(ol).find('li').on('click', function(){
@@ -2266,6 +2275,13 @@
           
           //同步按钮可点状态
           that.setBtnStatus();
+
+          if(options.autoConfirm){
+            that.setValue(that.parse());
+          }
+          if(minuteAutoClose){
+            that.setValue(that.parse()).remove().done();
+          }
         });
       });
     }
@@ -2451,6 +2467,12 @@
     } else if(options.type === 'date'){
       that.setValue(that.parse()).remove().done();
     } else if(options.type === 'datetime'){
+      if(options.dayAutoClose){
+        that.setValue(that.parse());
+        that.list('time', 0);
+        options.range && that.list('time', 1);
+        lay(that.footer).find('span[lay-type="datetime"]').attr('lay-type', 'date').html(that.lang().dateTips);
+      }
       that.calendar().done(null, 'change');
     }
   };

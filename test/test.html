@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/theme/default/laydate.css">
+    <script src="../src/laydate.js"></script>
+    <title>laydate示例</title>
+</head>
+<body>
+    <h1>laydate示例</h1>
+    <input type="text" id="laydatetext">
+</body>
+</html>
+
+<script>
+    laydate.render({
+        elem: '#laydatetext',
+        trigger: 'click',
+        type: 'datetime',
+        format: 'yyyy-MM-dd HH:mm',
+        min: '2018-01-01',
+        max: '2022-12-31',
+        showBottom: false,
+        autoConfirm: true,
+        dayAutoClose: true,
+        minuteAutoClose: true,
+        notShowSecond: true,
+        done: function(value, date, endDate){
+            console.log('done');
+            console.log(value);
+            console.log(date);
+        },
+        change: function (value, date) {
+            console.log('change');
+            console.log(value);
+            console.log(date);
+        }
+    });
+</script>
