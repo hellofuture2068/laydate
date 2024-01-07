@@ -1594,7 +1594,9 @@
     if(/^#/.test(options.theme)){
       var style = lay.elem('style')
       ,styleText = [
-        '#{{id}} .layui-laydate-header{background-color:{{theme}};}'
+        '#{{id}} .layui-laydate-header{background-color:#ffffff;}'
+        ,'#{{id}} .layui-laydate-header i{color:#999999;}'
+        ,'#{{id}} .layui-laydate-header span{color:#666666;}'
         ,'#{{id}} .layui-this{background-color:{{theme}} !important;}'
       ].join('').replace(/{{id}}/g, that.elemID).replace(/{{theme}}/g, options.theme);
       
