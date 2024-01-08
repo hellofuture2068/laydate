@@ -2279,7 +2279,7 @@
           that.setBtnStatus();
 
           if(options.autoConfirm){
-            that.setValue(that.parse());
+            that.setValue(that.parse()).done(null, 'change');
           }
           if(minuteAutoClose){
             that.setValue(that.parse()).remove().done();
