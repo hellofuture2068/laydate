@@ -2278,7 +2278,7 @@
           //同步按钮可点状态
           that.setBtnStatus();
 
-          if(options.autoConfirm){
+          if(options.autoConfirm&&!minuteAutoClose){
             that.setValue(that.parse()).done(null, 'change');
           }
           if(minuteAutoClose){
